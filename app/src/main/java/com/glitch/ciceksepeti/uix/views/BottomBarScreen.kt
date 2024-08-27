@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -15,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.glitch.ciceksepeti.R
@@ -28,6 +28,7 @@ fun BottomBarScreen() {
 	Scaffold(
 		bottomBar = {
 			BottomAppBar(
+				containerColor = Color.White,
 				content = {
 					NavigationBarItem(
 						selected = selectedItem.value == 0,
@@ -36,7 +37,7 @@ fun BottomBarScreen() {
 						},
 						icon = {
 							Icon(
-								painter = painterResource(id = R.drawable.ic_mainpage_placeholder),
+								painter = painterResource(id = R.drawable.ic_home),
 								contentDescription = ""
 							)
 						},
@@ -50,7 +51,7 @@ fun BottomBarScreen() {
 						},
 						icon = {
 							Icon(
-								painter = painterResource(id = R.drawable.ic_category_placeholder),
+								painter = painterResource(id = R.drawable.ic_category),
 								contentDescription = ""
 							)
 						},
@@ -64,7 +65,7 @@ fun BottomBarScreen() {
 						},
 						icon = {
 							Icon(
-								painter = painterResource(id = R.drawable.ic_favorites_placeholder),
+								painter = painterResource(id = R.drawable.ic_favorites),
 								contentDescription = ""
 							)
 						},
@@ -78,7 +79,7 @@ fun BottomBarScreen() {
 						},
 						icon = {
 							Icon(
-								painter = painterResource(id = R.drawable.icon_cart_placeholder),
+								painter = painterResource(id = R.drawable.ic_cart),
 								contentDescription = ""
 							)
 						},
@@ -92,7 +93,7 @@ fun BottomBarScreen() {
 						},
 						icon = {
 							Icon(
-								painter = painterResource(id = R.drawable.ic_account_placeholder),
+								painter = painterResource(id = R.drawable.ic_person),
 								contentDescription = ""
 							)
 						},
@@ -112,7 +113,7 @@ fun BottomBarScreen() {
 			if (selectedItem.value == 0) PageSwitch(chosenPage = "mainpage")
 			if (selectedItem.value == 1) PageSwitch(chosenPage = "categorypage")
 			if (selectedItem.value == 2) PageSwitch(chosenPage = "favoritespage")
-			if (selectedItem.value == 3) PageSwitch(chosenPage = "cartpage")
+			if (selectedItem.value == 3) PageSwitch(chosenPage = "cartscreen")
 			if (selectedItem.value == 4) PageSwitch(chosenPage = "accountpage")
 		}
 	}

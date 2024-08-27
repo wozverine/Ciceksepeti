@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun PageSwitch(chosenPage: String) {
 	val navController = rememberNavController()
-	NavHost(navController = navController, startDestination = "mainpage") {
+	NavHost(navController = navController, startDestination = chosenPage) {
 		composable("mainpage") {
 			//MainPage(navController = navController)
 		}
@@ -16,6 +16,12 @@ fun PageSwitch(chosenPage: String) {
 			//MainPage(navController = navController)
 		}
 		composable("favoritespage") {
+			//MainPage(navController = navController)
+		}
+		composable("cartscreen") {
+			CartScreen()
+		}
+		composable("accountpage") {
 			//MainPage(navController = navController)
 		}
 	}
