@@ -3,4 +3,5 @@
     <string name="app_name">Ciceksepeti</string>
     <string name="cart">Sepet</string>
     <string name="my_cart">Sepetim</string>
+    <string name="favorites">Favorilerim</string>
 </resources>

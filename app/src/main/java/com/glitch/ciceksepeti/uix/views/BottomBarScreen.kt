@@ -25,82 +25,86 @@ import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
 
 fun BottomBarScreen() {
 	val selectedItem = remember { mutableStateOf(0) }
+	val showBottomBar = remember { mutableStateOf(true) }
+
 	Scaffold(
 		bottomBar = {
-			BottomAppBar(
-				containerColor = Color.White,
-				content = {
-					NavigationBarItem(
-						selected = selectedItem.value == 0,
-						onClick = {
-							selectedItem.value = 0
-						},
-						icon = {
-							Icon(
-								painter = painterResource(id = R.drawable.ic_home),
-								contentDescription = ""
-							)
-						},
-						label = { Text(text = "Mainpage") }
-					)
+			if (showBottomBar.value) {
+				BottomAppBar(
+					containerColor = Color.White,
+					content = {
+						NavigationBarItem(
+							selected = selectedItem.value == 0,
+							onClick = {
+								selectedItem.value = 0
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_home),
+									contentDescription = ""
+								)
+							},
+							label = { Text(text = "Mainpage") }
+						)
 
-					NavigationBarItem(
-						selected = selectedItem.value == 1,
-						onClick = {
-							selectedItem.value = 1
-						},
-						icon = {
-							Icon(
-								painter = painterResource(id = R.drawable.ic_category),
-								contentDescription = ""
-							)
-						},
-						label = { Text(text = "Category") }
-					)
+						NavigationBarItem(
+							selected = selectedItem.value == 1,
+							onClick = {
+								selectedItem.value = 1
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_category),
+									contentDescription = ""
+								)
+							},
+							label = { Text(text = "Category") }
+						)
 
-					NavigationBarItem(
-						selected = selectedItem.value == 2,
-						onClick = {
-							selectedItem.value = 2
-						},
-						icon = {
-							Icon(
-								painter = painterResource(id = R.drawable.ic_favorites),
-								contentDescription = ""
-							)
-						},
-						label = { Text(text = "Favorites") }
-					)
+						NavigationBarItem(
+							selected = selectedItem.value == 2,
+							onClick = {
+								selectedItem.value = 2
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_favorites),
+									contentDescription = ""
+								)
+							},
+							label = { Text(text = "Favorites") }
+						)
 
-					NavigationBarItem(
-						selected = selectedItem.value == 3,
-						onClick = {
-							selectedItem.value = 3
-						},
-						icon = {
-							Icon(
-								painter = painterResource(id = R.drawable.ic_cart),
-								contentDescription = ""
-							)
-						},
-						label = { Text(text = "Cart") }
-					)
+						NavigationBarItem(
+							selected = selectedItem.value == 3,
+							onClick = {
+								selectedItem.value = 3
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_cart),
+									contentDescription = ""
+								)
+							},
+							label = { Text(text = "Cart") }
+						)
 
-					NavigationBarItem(
-						selected = selectedItem.value == 4,
-						onClick = {
-							selectedItem.value = 4
-						},
-						icon = {
-							Icon(
-								painter = painterResource(id = R.drawable.ic_person),
-								contentDescription = ""
-							)
-						},
-						label = { Text(text = "Account") }
-					)
-				}
-			)
+						NavigationBarItem(
+							selected = selectedItem.value == 4,
+							onClick = {
+								selectedItem.value = 4
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_person),
+									contentDescription = ""
+								)
+							},
+							label = { Text(text = "Account") }
+						)
+					}
+				)
+			}
 		}
 	) { paddingValues ->
 		Column(
@@ -110,11 +114,25 @@ fun BottomBarScreen() {
 			verticalArrangement = Arrangement.SpaceEvenly,
 			horizontalAlignment = Alignment.CenterHorizontally
 		) {
-			if (selectedItem.value == 0) PageSwitch(chosenPage = "mainpage")
+
+			when (selectedItem.value) {
+				0 -> PageSwitch(chosenPage = "mainpage")
+				1 -> PageSwitch(chosenPage = "categorypage")
+				2 -> PageSwitch(chosenPage = "favoritespage")
+				3 -> {
+					showBottomBar.value = false
+					CartScreen {
+						showBottomBar.value = true
+						selectedItem.value = 0
+					}
+				}
+				4 -> PageSwitch(chosenPage = "accountpage")
+			}
+			/*if (selectedItem.value == 0) PageSwitch(chosenPage = "mainpage")
 			if (selectedItem.value == 1) PageSwitch(chosenPage = "categorypage")
 			if (selectedItem.value == 2) PageSwitch(chosenPage = "favoritespage")
 			if (selectedItem.value == 3) PageSwitch(chosenPage = "cartscreen")
-			if (selectedItem.value == 4) PageSwitch(chosenPage = "accountpage")
+			if (selectedItem.value == 4) PageSwitch(chosenPage = "accountpage")*/
 		}
 	}
 

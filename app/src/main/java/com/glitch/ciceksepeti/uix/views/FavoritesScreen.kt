@@ -6,26 +6,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.glitch.ciceksepeti.R
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
@@ -35,35 +30,16 @@ import com.glitch.ciceksepeti.ui.theme.Green167
 @Composable
 
 
-fun CartScreen(
-	navigateBack: () -> Unit
-) {
+fun FavoritesScreen() {
 
 	val configuration = LocalConfiguration.current
 
 	val screenWidth = configuration.screenWidthDp
 	val screenHeight = configuration.screenHeightDp
 
-
 	Scaffold(
 		topBar = {
-			CenterAlignedTopAppBar(
-				title = {
-					Text(
-						text = stringResource(id = R.string.my_cart),
-						fontSize = 16.sp
-					)
-				},
-
-				navigationIcon = {
-					IconButton(onClick = navigateBack) {
-						Icon(
-							imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-							contentDescription = "Localized description"
-						)
-					}
-				},
-			)
+			TopAppBar(title = { Text(text = stringResource(id = R.string.favorites)) })
 		}
 	) { paddingValues ->
 		Column(
@@ -111,10 +87,10 @@ fun CartScreen(
 	locale = "tr"
 )
 @Composable
-fun CartPreview() {
+fun FavoritesPreview() {
 	CiceksepetiTheme {
 		val navController = rememberNavController()
 
-		CartScreen(navigateBack = { navController.popBackStack() })
+		FavoritesScreen()
 	}
 }

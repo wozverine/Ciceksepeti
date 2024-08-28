@@ -19,7 +19,9 @@ fun PageSwitch(chosenPage: String) {
 			//MainPage(navController = navController)
 		}
 		composable("cartscreen") {
-			CartScreen()
+			CartScreen(
+				navigateBack = { navController.popBackStack() }
+			)
 		}
 		composable("accountpage") {
 			//MainPage(navController = navController)
