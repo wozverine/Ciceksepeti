@@ -16,10 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.glitch.ciceksepeti.R
@@ -30,7 +30,7 @@ import com.glitch.ciceksepeti.ui.theme.Green167
 @Composable
 
 
-fun FavoritesScreen() {
+fun FavoritesScreen(navigateBack: () -> Unit) {
 
 	val configuration = LocalConfiguration.current
 
@@ -52,7 +52,7 @@ fun FavoritesScreen() {
 		) {
 			Image(
 				painter = painterResource(
-					id = R.drawable.cart,
+					id = R.drawable.benim,
 				),
 				modifier = Modifier
 					.padding(vertical = 10.dp)
@@ -62,19 +62,17 @@ fun FavoritesScreen() {
 				contentScale = ContentScale.Fit,
 				contentDescription = ""
 			)
-			Text(text = "Sepetinizde ürün bulunmamaktadır.")
+			Text(text = stringResource(id = R.string.fav_empty))
 			Button(
 				onClick = {
-					/*TODO*/
+					navigateBack()
 				},
 				colors = ButtonDefaults.buttonColors(
 					containerColor = Green167,
 				),
 				shape = RoundedCornerShape(10.dp)
 			) {
-				Text(
-					text = "Alışverişe başla"
-				)
+				Text(text = stringResource(id = R.string.list))
 			}
 		}
 	}
@@ -91,6 +89,6 @@ fun FavoritesPreview() {
 	CiceksepetiTheme {
 		val navController = rememberNavController()
 
-		FavoritesScreen()
+		FavoritesScreen(navigateBack = { navController.popBackStack() })
 	}
 }

@@ -86,19 +86,17 @@ fun CartScreen(
 				contentScale = ContentScale.Fit,
 				contentDescription = ""
 			)
-			Text(text = "Sepetinizde ürün bulunmamaktadır.")
+			Text(text = stringResource(R.string.cart_empty))
 			Button(
 				onClick = {
-					/*TODO*/
+					navigateBack()
 				},
 				colors = ButtonDefaults.buttonColors(
 					containerColor = Green167,
 				),
 				shape = RoundedCornerShape(10.dp)
 			) {
-				Text(
-					text = "Alışverişe başla"
-				)
+				Text(text = stringResource(id = R.string.start_shopping))
 			}
 		}
 	}

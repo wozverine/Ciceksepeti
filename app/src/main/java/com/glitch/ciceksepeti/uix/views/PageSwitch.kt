@@ -16,16 +16,13 @@ fun PageSwitch(chosenPage: String) {
 			//MainPage(navController = navController)
 		}
 		composable("favoritespage") {
-			//MainPage(navController = navController)
+			FavoritesScreen(navigateBack = { navController.popBackStack() })
 		}
 		composable("cartscreen") {
-			CartScreen(
-				navigateBack = { navController.popBackStack() }
-			)
+			CartScreen(navigateBack = { navController.popBackStack() })
 		}
 		composable("accountpage") {
 			//MainPage(navController = navController)
 		}
 	}
-
 }
