@@ -12,4 +12,7 @@
 
 
 REFERENCES:
+
 <a href="https://www.vecteezy.com/free-vector/icons">Icons Vectors by Vecteezy</a>
+<a href="https://www.vecteezy.com/free-vector/star">Star Vectors by Vecteezy</a>
+<a href="https://www.vecteezy.com/free-vector/web">Web Vectors by Vecteezy</a>
