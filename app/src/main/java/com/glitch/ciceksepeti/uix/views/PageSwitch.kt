@@ -9,9 +9,9 @@ import androidx.navigation.compose.rememberNavController
 fun PageSwitch(chosenPage: String) {
 	val navController = rememberNavController()
 	NavHost(navController = navController, startDestination = chosenPage) {
-		composable("mainpage") {
-			//MainPage(navController = navController)
-		}
+		/*composable("mainpage") {
+			MainScreen(*//*navController = navController*//*)
+		}*/
 		composable("categorypage") {
 			//MainPage(navController = navController)
 		}
@@ -22,7 +22,13 @@ fun PageSwitch(chosenPage: String) {
 			CartScreen(navigateBack = { navController.popBackStack() })
 		}
 		composable("accountpage") {
-			//MainPage(navController = navController)
+			AccountScreen(navController = navController)
+		}
+		composable("flowerscreen") {
+			FlowerScreen()
+		}
+		composable("presentscreen") {
+
 		}
 	}
 }

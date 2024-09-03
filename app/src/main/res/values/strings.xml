@@ -1,16 +1,13 @@
 <resources>
     <string name="app_name">Ciceksepeti</string>
-
-    <string name="cart">Cart</string>
-    <string name="my_cart">My Cart</string>
-    <string name="cart_empty">Empty cart.</string>
-    <string name="start_shopping">Start shopping</string>
-
-    <string name="list">List Products</string>
-    <string name="fav_empty">No favorite products.</string>
-
-
-    <string name="favorites">Favorites</string>
+    <string name="cart">Sepet</string>
+    <string name="my_cart">Sepetim</string>
+    <string name="account">Hesabım</string>
+    <string name="favorites">Favorilerim</string>
+    <string name="cart_empty">Sepetinizde ürün bulunmamaktadır.</string>
+    <string name="start_shopping">Alışverişe başla</string>
+    <string name="list">Ürünleri listele</string>
+    <string name="fav_empty">Favorilediğiniz bir ürün bulunmamaktadır.</string>
 
 
 </resources>

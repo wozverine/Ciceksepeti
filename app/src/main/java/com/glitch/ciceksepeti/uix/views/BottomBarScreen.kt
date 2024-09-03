@@ -1,24 +1,32 @@
 package com.glitch.ciceksepeti.uix.views
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.glitch.ciceksepeti.R
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
+import kotlinx.coroutines.launch
 
 @Composable
 
@@ -26,6 +34,9 @@ import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
 fun BottomBarScreen() {
 	val selectedItem = remember { mutableStateOf(0) }
 	val showBottomBar = remember { mutableStateOf(true) }
+	val tabIndex = remember { mutableStateOf(0) }
+	val scope = rememberCoroutineScope()
+
 
 	Scaffold(
 		bottomBar = {
@@ -40,7 +51,7 @@ fun BottomBarScreen() {
 							},
 							icon = {
 								Icon(
-									painter = painterResource(id = R.drawable.ic_home),
+									painter = painterResource(id = R.drawable.cicekicon3),
 									contentDescription = ""
 								)
 							},
@@ -116,7 +127,46 @@ fun BottomBarScreen() {
 		) {
 
 			when (selectedItem.value) {
-				0 -> PageSwitch(chosenPage = "mainpage")
+				0 -> {
+					Column {
+						TabRow(
+							selectedTabIndex = tabIndex.value,
+							Modifier.background(Color.White)
+						) {
+							Tab(
+								text = { Text("Çiçek ve Çikolata") },
+								icon = {
+									Image(
+										painter = painterResource(id = R.drawable.ic_cicektext),
+										contentDescription = "Search"
+									)
+								},
+								selected = tabIndex.value == 0,
+								onClick = {
+									scope.launch { tabIndex.value = 0 }
+								}
+							)
+							Tab(
+								text = { Text("Presents") },
+								icon = {
+									Image(
+										painter = painterResource(id = R.drawable.ic_presenttext),
+										contentDescription = "Search"
+									)
+								},
+								selected = tabIndex.value == 1,
+								onClick = {
+									scope.launch { tabIndex.value = 1 }
+								}
+							)
+						}
+						when (tabIndex.value) {
+							0 -> PageSwitch(chosenPage = "flowerscreen")
+							1 -> Text("Presents content")
+						}
+					}
+				}
+
 				1 -> PageSwitch(chosenPage = "categorypage")
 				2 -> PageSwitch(chosenPage = "favoritespage")
 				3 -> {
@@ -126,6 +176,7 @@ fun BottomBarScreen() {
 						selectedItem.value = 0
 					}
 				}
+
 				4 -> PageSwitch(chosenPage = "accountpage")
 			}
 			/*if (selectedItem.value == 0) PageSwitch(chosenPage = "mainpage")
