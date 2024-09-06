@@ -44,7 +44,6 @@ import com.glitch.ciceksepeti.data.entity.Flowerstory
 import com.glitch.ciceksepeti.data.entity.Offermenu
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
 fun FlowerScreen() {
