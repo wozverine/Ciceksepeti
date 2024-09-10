@@ -189,7 +189,7 @@ fun FlowerScreen() {
 								)
 							),
 							contentDescription = "",
-							contentScale = ContentScale.Crop // Adjust the scale as needed
+							contentScale = ContentScale.Crop
 						)
 					}
 				}

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -23,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.glitch.ciceksepeti.R
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
 import kotlinx.coroutines.launch
@@ -34,90 +32,60 @@ import kotlinx.coroutines.launch
 fun BottomBarScreen() {
 	val selectedItem = remember { mutableStateOf(0) }
 	val showBottomBar = remember { mutableStateOf(true) }
+	val showTopBar = remember { mutableStateOf(true) }
 	val tabIndex = remember { mutableStateOf(0) }
 	val scope = rememberCoroutineScope()
 
+	Scaffold(bottomBar = {
+		if (showBottomBar.value) {
+			BottomAppBar(containerColor = Color.White, content = {
+				NavigationBarItem(selected = selectedItem.value == 0, onClick = {
+					selectedItem.value = 0
+				}, icon = {
+					Icon(
+						painter = painterResource(id = R.drawable.cicekicon3),
+						contentDescription = ""
+					)
+				}, label = { Text(text = "Mainpage") })
 
-	Scaffold(
-		bottomBar = {
-			if (showBottomBar.value) {
-				BottomAppBar(
-					containerColor = Color.White,
-					content = {
-						NavigationBarItem(
-							selected = selectedItem.value == 0,
-							onClick = {
-								selectedItem.value = 0
-							},
-							icon = {
-								Icon(
-									painter = painterResource(id = R.drawable.cicekicon3),
-									contentDescription = ""
-								)
-							},
-							label = { Text(text = "Mainpage") }
-						)
+				NavigationBarItem(selected = selectedItem.value == 1, onClick = {
+					selectedItem.value = 1
+				}, icon = {
+					Icon(
+						painter = painterResource(id = R.drawable.ic_category),
+						contentDescription = ""
+					)
+				}, label = { Text(text = "Category") })
 
-						NavigationBarItem(
-							selected = selectedItem.value == 1,
-							onClick = {
-								selectedItem.value = 1
-							},
-							icon = {
-								Icon(
-									painter = painterResource(id = R.drawable.ic_category),
-									contentDescription = ""
-								)
-							},
-							label = { Text(text = "Category") }
-						)
+				NavigationBarItem(selected = selectedItem.value == 2, onClick = {
+					selectedItem.value = 2
+				}, icon = {
+					Icon(
+						painter = painterResource(id = R.drawable.ic_favorites),
+						contentDescription = ""
+					)
+				}, label = { Text(text = "Favorites") })
 
-						NavigationBarItem(
-							selected = selectedItem.value == 2,
-							onClick = {
-								selectedItem.value = 2
-							},
-							icon = {
-								Icon(
-									painter = painterResource(id = R.drawable.ic_favorites),
-									contentDescription = ""
-								)
-							},
-							label = { Text(text = "Favorites") }
-						)
+				NavigationBarItem(selected = selectedItem.value == 3, onClick = {
+					selectedItem.value = 3
+				}, icon = {
+					Icon(
+						painter = painterResource(id = R.drawable.ic_cart),
+						contentDescription = ""
+					)
+				}, label = { Text(text = "Cart") })
 
-						NavigationBarItem(
-							selected = selectedItem.value == 3,
-							onClick = {
-								selectedItem.value = 3
-							},
-							icon = {
-								Icon(
-									painter = painterResource(id = R.drawable.ic_cart),
-									contentDescription = ""
-								)
-							},
-							label = { Text(text = "Cart") }
-						)
-
-						NavigationBarItem(
-							selected = selectedItem.value == 4,
-							onClick = {
-								selectedItem.value = 4
-							},
-							icon = {
-								Icon(
-									painter = painterResource(id = R.drawable.ic_person),
-									contentDescription = ""
-								)
-							},
-							label = { Text(text = "Account") }
-						)
-					}
-				)
-			}
+				NavigationBarItem(selected = selectedItem.value == 4, onClick = {
+					selectedItem.value = 4
+				}, icon = {
+					Icon(
+						painter = painterResource(id = R.drawable.ic_person),
+						contentDescription = ""
+					)
+				}, label = { Text(text = "Account") })
+			})
 		}
-	) { paddingValues ->
+	}) { paddingValues ->
 		Column(
 			modifier = Modifier
 				.fillMaxSize()
@@ -130,35 +98,24 @@ fun BottomBarScreen() {
 				0 -> {
 					Column {
 						TabRow(
-							selectedTabIndex = tabIndex.value,
-							Modifier.background(Color.White)
+							selectedTabIndex = tabIndex.value, Modifier.background(Color.White)
 						) {
-							Tab(
-								text = { Text("Çiçek ve Çikolata") },
-								icon = {
-									Image(
-										painter = painterResource(id = R.drawable.ic_cicektext),
-										contentDescription = "Search"
-									)
-								},
-								selected = tabIndex.value == 0,
-								onClick = {
-									scope.launch { tabIndex.value = 0 }
-								}
-							)
-							Tab(
-								text = { Text("Presents") },
-								icon = {
-									Image(
-										painter = painterResource(id = R.drawable.ic_presenttext),
-										contentDescription = "Search"
-									)
-								},
-								selected = tabIndex.value == 1,
-								onClick = {
-									scope.launch { tabIndex.value = 1 }
-								}
-							)
+							Tab(text = { Text("Çiçek ve Çikolata") }, icon = {
+								Image(
+									painter = painterResource(id = R.drawable.ic_cicektext),
+									contentDescription = "Search"
+								)
+							}, selected = tabIndex.value == 0, onClick = {
+								scope.launch { tabIndex.value = 0 }
+							})
+							Tab(text = { Text("Presents") }, icon = {
+								Image(
+									painter = painterResource(id = R.drawable.ic_presenttext),
+									contentDescription = "Search"
+								)
+							}, selected = tabIndex.value == 1, onClick = {
+								scope.launch { tabIndex.value = 1 }
+							})
 						}
 						when (tabIndex.value) {
 							0 -> PageSwitch(chosenPage = "flowerscreen")
@@ -177,16 +134,12 @@ fun BottomBarScreen() {
 					}
 				}
 
-				4 -> PageSwitch(chosenPage = "accountpage")
+				4 -> {
+					PageSwitch(chosenPage = "accountpage")
+				}
 			}
-			/*if (selectedItem.value == 0) PageSwitch(chosenPage = "mainpage")
-			if (selectedItem.value == 1) PageSwitch(chosenPage = "categorypage")
-			if (selectedItem.value == 2) PageSwitch(chosenPage = "favoritespage")
-			if (selectedItem.value == 3) PageSwitch(chosenPage = "cartscreen")
-			if (selectedItem.value == 4) PageSwitch(chosenPage = "accountpage")*/
 		}
 	}
-
 }
 
 @Preview(
