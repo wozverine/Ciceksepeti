@@ -9,5 +9,8 @@
     <string name="list">Ürünleri listele</string>
     <string name="fav_empty">Favorilediğiniz bir ürün bulunmamaktadır.</string>
 
+    <string name="olustur">Benim Oluşturduklarım</string>
+    <string name="takip">Takip Ettiklerim</string>
+
 
 </resources>

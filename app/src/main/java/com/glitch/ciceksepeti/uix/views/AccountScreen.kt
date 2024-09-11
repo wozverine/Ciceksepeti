@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,12 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
@@ -43,9 +39,7 @@ import com.glitch.ciceksepeti.R
 import com.glitch.ciceksepeti.data.entity.Accountmenu
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun AccountScreen(navController: NavController) {
 
 	val configuration = LocalConfiguration.current
@@ -93,36 +87,6 @@ fun AccountScreen(navController: NavController) {
 	}
 
 	@Composable
-	fun CustomTopAppBar(title: String) {
-		CenterAlignedTopAppBar(
-			windowInsets = WindowInsets(
-				top = 0.dp,
-				bottom = 0.dp
-			),
-			title = {
-				Box(
-					modifier = Modifier
-						.padding(vertical = 0.dp)
-						.fillMaxWidth(),
-				) {
-					Text(
-						modifier = Modifier
-							.padding(0.dp)
-							.fillMaxWidth(),
-						text = title,
-						fontSize = 14.sp,
-						textAlign = TextAlign.Center
-					)
-				}
-			},
-			modifier = Modifier
-				.padding(0.dp)
-				.fillMaxWidth(),
-			colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.White),
-		)
-	}
-
-	@Composable
 	fun CustomTopAppBarNoPadding(title: String) {
 		Box(
 			modifier = Modifier
@@ -144,7 +108,6 @@ fun AccountScreen(navController: NavController) {
 		}
 	}
 
-
 	Scaffold(topBar = {
 		CustomTopAppBarNoPadding(title = stringResource(id = R.string.account))
 	}) { paddingValues ->
@@ -158,7 +121,7 @@ fun AccountScreen(navController: NavController) {
 
 			items(count = menuList.count()) { index ->
 				val menu = menuList[index]
-				HorizontalDivider(thickness = 1.dp, color = Color.LightGray)
+				HorizontalDivider(thickness = 1.dp, color = colorResource(id = R.color.lighter_grey))
 				Card(
 					colors = CardDefaults.cardColors(
 						containerColor = Color.White
@@ -193,7 +156,6 @@ fun AccountScreen(navController: NavController) {
 									start.linkTo(firstImage.end)
 									top.linkTo(parent.top)
 									bottom.linkTo(parent.bottom)
-									end.linkTo(lastImage.start)
 								}, text = menu.name
 						)
 

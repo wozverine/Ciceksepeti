@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.glitch.ciceksepeti.R
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
@@ -32,7 +33,6 @@ import kotlinx.coroutines.launch
 fun BottomBarScreen() {
 	val selectedItem = remember { mutableStateOf(0) }
 	val showBottomBar = remember { mutableStateOf(true) }
-	val showTopBar = remember { mutableStateOf(true) }
 	val tabIndex = remember { mutableStateOf(0) }
 	val scope = rememberCoroutineScope()
 
@@ -125,7 +125,29 @@ fun BottomBarScreen() {
 				}
 
 				1 -> PageSwitch(chosenPage = "categorypage")
-				2 -> PageSwitch(chosenPage = "favoritespage")
+				2 -> {
+					Column {
+						TabRow(
+							selectedTabIndex = tabIndex.value, Modifier.background(Color.White)
+						) {
+							Tab(text = { Text(stringResource(id = R.string.olustur)) },
+								selected = tabIndex.value == 0, onClick = {
+									scope.launch { tabIndex.value = 0 }
+								})
+							Tab(text = { Text(stringResource(id = R.string.takip)) },
+								selected = tabIndex.value == 1, onClick = {
+									scope.launch { tabIndex.value = 1 }
+								})
+						}
+						when (tabIndex.value) {
+							0 -> PageSwitch(chosenPage = "favoritespage")
+							1 -> Text("Presents content")
+						}
+					}
+				}
+
+
+				//2 -> PageSwitch(chosenPage = "favoritespage")
 				3 -> {
 					showBottomBar.value = false
 					CartScreen {
