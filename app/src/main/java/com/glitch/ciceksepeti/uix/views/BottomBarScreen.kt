@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -24,6 +25,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.glitch.ciceksepeti.R
+import com.glitch.ciceksepeti.ui.theme.BlueBtSlctd
+import com.glitch.ciceksepeti.ui.theme.BlueBtnotSlctd
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
 import kotlinx.coroutines.launch
 
@@ -35,57 +38,144 @@ fun BottomBarScreen() {
 	val showBottomBar = remember { mutableStateOf(true) }
 	val tabIndex = remember { mutableStateOf(0) }
 	val scope = rememberCoroutineScope()
+	val selectedColor: Color = BlueBtSlctd
+	val unselectedColor: Color = BlueBtnotSlctd
 
-	Scaffold(bottomBar = {
-		if (showBottomBar.value) {
-			BottomAppBar(containerColor = Color.White, content = {
-				NavigationBarItem(selected = selectedItem.value == 0, onClick = {
-					selectedItem.value = 0
-				}, icon = {
-					Icon(
-						painter = painterResource(id = R.drawable.cicekicon3),
-						contentDescription = ""
-					)
-				}, label = { Text(text = "Mainpage") })
+	Scaffold(
+		containerColor = Color.White,
+		bottomBar = {
+			if (showBottomBar.value) {
+				BottomAppBar(
+					containerColor = Color.Transparent,
+					contentColor = Color.White,
+					content = {
+						NavigationBarItem(
+							selected = selectedItem.value == 0,
+							onClick = {
+								selectedItem.value = 0
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.cicekicon3),
+									contentDescription = "",
+									tint = if (selectedItem.value == 0) selectedColor else unselectedColor
+								)
+							},
+							label = {
+								Text(
+									text = "Mainpage",
+									color = if (selectedItem.value == 0) selectedColor else unselectedColor
+								)
+							},
+							colors = NavigationBarItemDefaults.colors(
+								selectedIconColor = selectedColor,
+								unselectedIconColor = unselectedColor,
+								indicatorColor = Color.White
+							)
+						)
 
-				NavigationBarItem(selected = selectedItem.value == 1, onClick = {
-					selectedItem.value = 1
-				}, icon = {
-					Icon(
-						painter = painterResource(id = R.drawable.ic_category),
-						contentDescription = ""
-					)
-				}, label = { Text(text = "Category") })
+						NavigationBarItem(
+							selected = selectedItem.value == 1,
+							onClick = {
+								selectedItem.value = 1
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_category),
+									contentDescription = "",
+									tint = if (selectedItem.value == 1) selectedColor else unselectedColor
+								)
+							},
+							label = {
+								Text(
+									text = "Category",
+									color = if (selectedItem.value == 1) selectedColor else unselectedColor
+								)
+							},
+							colors = NavigationBarItemDefaults.colors(
+								selectedIconColor = selectedColor,
+								unselectedIconColor = unselectedColor,
+								indicatorColor = Color.White
+							)
+						)
 
-				NavigationBarItem(selected = selectedItem.value == 2, onClick = {
-					selectedItem.value = 2
-				}, icon = {
-					Icon(
-						painter = painterResource(id = R.drawable.ic_favorites),
-						contentDescription = ""
-					)
-				}, label = { Text(text = "Favorites") })
+						NavigationBarItem(
+							selected = selectedItem.value == 2,
+							onClick = {
+								selectedItem.value = 2
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_favorites),
+									contentDescription = "",
+									tint = if (selectedItem.value == 2) selectedColor else unselectedColor
+								)
+							},
+							label = {
+								Text(
+									text = "Favorites",
+									color = if (selectedItem.value == 2) selectedColor else unselectedColor
+								)
+							},
+							colors = NavigationBarItemDefaults.colors(
+								selectedIconColor = selectedColor,
+								unselectedIconColor = unselectedColor,
+								indicatorColor = Color.White
+							)
+						)
 
-				NavigationBarItem(selected = selectedItem.value == 3, onClick = {
-					selectedItem.value = 3
-				}, icon = {
-					Icon(
-						painter = painterResource(id = R.drawable.ic_cart),
-						contentDescription = ""
-					)
-				}, label = { Text(text = "Cart") })
+						NavigationBarItem(
+							selected = selectedItem.value == 3,
+							onClick = {
+								selectedItem.value = 3
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_cart),
+									contentDescription = "",
+									tint = if (selectedItem.value == 3) selectedColor else unselectedColor
+								)
+							},
+							label = {
+								Text(
+									text = "Cart",
+									color = if (selectedItem.value == 3) selectedColor else unselectedColor
+								)
+							},
+							colors = NavigationBarItemDefaults.colors(
+								selectedIconColor = selectedColor,
+								unselectedIconColor = unselectedColor,
+								indicatorColor = Color.White
+							)
+						)
 
-				NavigationBarItem(selected = selectedItem.value == 4, onClick = {
-					selectedItem.value = 4
-				}, icon = {
-					Icon(
-						painter = painterResource(id = R.drawable.ic_person),
-						contentDescription = ""
-					)
-				}, label = { Text(text = "Account") })
-			})
-		}
-	}) { paddingValues ->
+						NavigationBarItem(
+							selected = selectedItem.value == 4,
+							onClick = {
+								selectedItem.value = 4
+							},
+							icon = {
+								Icon(
+									painter = painterResource(id = R.drawable.ic_person),
+									contentDescription = "",
+									//tint = if (selectedItem.value == 4) selectedColor else unselectedColor
+								)
+							},
+							label = {
+								Text(
+									text = "Account",
+									color = if (selectedItem.value == 4) selectedColor else unselectedColor
+								)
+							},
+							colors = NavigationBarItemDefaults.colors(
+								selectedIconColor = selectedColor,
+								unselectedIconColor = unselectedColor,
+								indicatorColor = Color.White
+							)
+						)
+					})
+			}
+		}) { paddingValues ->
 		Column(
 			modifier = Modifier
 				.fillMaxSize()
@@ -146,8 +236,6 @@ fun BottomBarScreen() {
 					}
 				}
 
-
-				//2 -> PageSwitch(chosenPage = "favoritespage")
 				3 -> {
 					showBottomBar.value = false
 					CartScreen {

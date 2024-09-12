@@ -22,7 +22,7 @@ fun PageSwitch(chosenPage: String) {
 			CartScreen(navigateBack = { navController.popBackStack() })
 		}
 		composable("accountpage") {
-			AccountScreen(navController = navController)
+			AccountScreen()
 		}
 		composable("flowerscreen") {
 			FlowerScreen()

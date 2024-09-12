@@ -18,13 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,21 +32,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.glitch.ciceksepeti.R
 import com.glitch.ciceksepeti.data.entity.Accountmenu
 import com.glitch.ciceksepeti.ui.theme.CiceksepetiTheme
 
 @Composable
-fun AccountScreen(navController: NavController) {
-
-	val configuration = LocalConfiguration.current
-	val screenWidth = configuration.screenWidthDp
-	val screenHeight = configuration.screenHeightDp
+fun AccountScreen() {
 
 	val menuList = remember { mutableStateListOf<Accountmenu>() }
-	val scope = rememberCoroutineScope()
 
 	LaunchedEffect(key1 = true) {
 		val m1 = Accountmenu(1, "Siparişlerim", "siparis")
@@ -108,20 +100,23 @@ fun AccountScreen(navController: NavController) {
 		}
 	}
 
-	Scaffold(topBar = {
-		CustomTopAppBarNoPadding(title = stringResource(id = R.string.account))
-	}) { paddingValues ->
+	Scaffold(
+		topBar = { CustomTopAppBarNoPadding(title = stringResource(id = R.string.account)) }
+	) { paddingValues ->
 		LazyColumn(
 			modifier = Modifier
 				.fillMaxSize()
 				.padding(
 					top = paddingValues.calculateTopPadding(), bottom = 0.dp
-				),
+				)
+				.background(Color.White),
 		) {
 
 			items(count = menuList.count()) { index ->
 				val menu = menuList[index]
-				HorizontalDivider(thickness = 1.dp, color = colorResource(id = R.color.lighter_grey))
+				HorizontalDivider(
+					thickness = 1.dp, color = colorResource(id = R.color.lighter_grey)
+				)
 				Card(
 					colors = CardDefaults.cardColors(
 						containerColor = Color.White
@@ -151,17 +146,21 @@ fun AccountScreen(navController: NavController) {
 
 						Text(
 							modifier = Modifier
-								.padding(vertical = 5.dp)
+								.padding(vertical = 14.dp)
+								.padding(start = 8.dp)
 								.constrainAs(text) {
 									start.linkTo(firstImage.end)
 									top.linkTo(parent.top)
 									bottom.linkTo(parent.bottom)
-								}, text = menu.name
+								},
+							text = menu.name,
+							fontSize = 14.sp,
+							color = Color.Black
 						)
 
 						Image(
 							modifier = Modifier
-								.padding(vertical = 5.dp)
+								.padding(vertical = 14.dp)
 								.constrainAs(lastImage) {
 									end.linkTo(parent.end)
 									top.linkTo(parent.top)
@@ -177,9 +176,9 @@ fun AccountScreen(navController: NavController) {
 			item {
 				Text(
 					modifier = Modifier
-						.padding(vertical = 12.dp)
+						.padding(vertical = 14.dp)
 						.fillMaxWidth(),
-					text = "Mevcut Sürüm 6.5.6 (97597)",
+					text = stringResource(id = R.string.surum),
 					textAlign = TextAlign.Center,
 					color = Color.LightGray,
 					fontSize = 10.sp
@@ -195,7 +194,6 @@ fun AccountScreen(navController: NavController) {
 @Composable
 fun AccountPreview() {
 	CiceksepetiTheme {
-		val navController = rememberNavController()
-		AccountScreen(navController)
+		AccountScreen()
 	}
 }
