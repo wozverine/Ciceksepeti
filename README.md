@@ -7,8 +7,9 @@
 - [x] Gson
 
 ## Screens
-|1|2|3|
-|--|--|--|
+| Cart | Account | 3 |
+| ------- | ------ | ------- |
+|![image](https://github.com/user-attachments/assets/0ff6dc34-e83c-4e57-a869-44a16e8771dc)|![image](https://github.com/user-attachments/assets/ec92b15b-8260-4c14-a7e9-2b78bf07b736)|--|
 
 
 REFERENCES:
